@@ -26,23 +26,23 @@ input Site 1.
 	if DoesLot = 'Missing' then prot_amend = 'Missing' and Limit = 'Missing';
 proc format;
 	value Site 'J' = 'Aurora Health Associates'
-			   'Q' = 'Omaha Medical Center'
-			   'R' =  'Sherwin Heights Healthcare'
+		   'Q' = 'Omaha Medical Center'
+	           'R' =  'Sherwin Heights Healthcare'
 	; 
 	value $Sex '2' = 'Male'
-			   '1' = 'Female'
+		   '1' = 'Female'
 	;
 	value $Race '1' = 'Asian'
-				'2' = 'Black'
-				'3' = 'Caucausian'
-				'4' = 'Other'	
+		    '2' = 'Black'
+		    '3' = 'Caucausian'
+		    '4' = 'Other'	
 	;
 	value names   Site = 'Site'.	
-				  Pt =  'Patient'
-				  Sex = 'Patient Sex'
-				  Race = 'Patient Race'
-				  Dosedate = 'Dose Date'
-				  prot_amend = 'Protocol Amendment'
-				  Limit = 'Lower Limit of Detection'
-				  site_name = 'Site Name';
+		      Pt =  'Patient'
+		      Sex = 'Patient Sex'
+		      Race = 'Patient Race'
+		      Dosedate = 'Dose Date'
+		      prot_amend = 'Protocol Amendment'
+		      Limit = 'Lower Limit of Detection'
+		      site_name = 'Site Name';
 run;
