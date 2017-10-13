@@ -7,19 +7,18 @@ Name: Joshua Song
 */
 
 data Study;
-
-infile '/courses/dc4508e5ba27fe300/c_629/suppTRP-1062.txt' missover;
-input Site	: 	       $1.	
-      Pt	: 	       $2.
-      Sex	: 		8.
-      Race	: 	 	8.
-      Dosedate	: 	  mmddyy8.
-      Height	: 	        8.
-      Weight	: 	        8.
-      Result1	: 	        8.
-      Result2	: 	        8.
-      Result3	: 	        8.
-      ;
+	infile "/courses/dc4508e5ba27fe300/c_629/suppTRP-1062.txt" missover;
+	input Site	: 	       $1.	
+      	Pt		: 	       $2.
+      	Sex		: 		8.
+      	Race		: 	 	8.
+      	Dosedate	: 	  mmddyy8.
+      	Height		: 	        8.
+      	Weight		: 	        8.
+      	Result1		: 	        8.
+      	Result2		: 	        8.
+      	Result3		: 	        8.
+      	;
 format Doesdate mmddyy8.;
 
       /*
