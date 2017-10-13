@@ -28,6 +28,9 @@ input Site		: 	1.
       if Limit = 0.02 then prot_amend = 'P0526';
       if DoesLot = 'S0576' and 'P1122' then Limit = '0.02';
       if DoesLot = 'Missing' then prot_amend = 'Missing' and Limit = 'Missing';
+      /*
+      	Back to the real code.
+      */
 proc format;
 	value Site 'J' = 'Aurora Health Associates'
 		   'Q' = 'Omaha Medical Center'
