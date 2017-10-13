@@ -37,7 +37,7 @@ proc format;
 		    '3' = 'Caucausian'
 		    '4' = 'Other'	
 	;
-	value names   Site = 'Site'.	
+	label names   Site = 'Site'.	
 		      Pt =  'Patient'
 		      Sex = 'Patient Sex'
 		      Race = 'Patient Race'
