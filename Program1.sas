@@ -32,24 +32,24 @@ input Site		: 	1.
       	Back to the real code.
       */
 proc format;
-	value Site 'J' = 'Aurora Health Associates'
-		   'Q' = 'Omaha Medical Center'
-	           'R' =  'Sherwin Heights Healthcare'
-	; 
-	value $Sex '2' = 'Male'
-		   '1' = 'Female'
-	;
-	value $Race '1' = 'Asian'
-		    '2' = 'Black'
-		    '3' = 'Caucausian'
-		    '4' = 'Other'	
-	;
-	label names   Site = 'Site'.	
-		      Pt =  'Patient'
-		      Sex = 'Patient Sex'
-		      Race = 'Patient Race'
-		      Dosedate = 'Dose Date'
-		      prot_amend = 'Protocol Amendment'
-		      Limit = 'Lower Limit of Detection'
-		      site_name = 'Site Name';
+     value Site 'J' = 'Aurora Health Associates'
+		'Q' = 'Omaha Medical Center'
+	        'R' =  'Sherwin Heights Healthcare'
+     ; 
+     value $Sex '2' = 'Male'
+		'1' = 'Female'
+     ;
+     value $Race '1' = 'Asian'
+		 '2' = 'Black'
+		 '3' = 'Caucausian'
+		 '4' = 'Other'	
+     ;
+     label names  Site = 'Site'.	
+		  Pt =  'Patient'
+		  Sex = 'Patient Sex'
+		  Race = 'Patient Race'
+		  Dosedate = 'Dose Date'
+		  prot_amend = 'Protocol Amendment'
+		  Limit = 'Lower Limit of Detection'
+		  site_name = 'Site Name';
 run;
