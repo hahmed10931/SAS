@@ -13,8 +13,8 @@ data Study;
 	*/
 	input Site		: 	       $1.	
       	Pt			: 	       $2.
-      	Sex			: 		   $8.
-      	Race		: 	 	   $8.
+      	Sex			: 		   8.
+      	Race		: 	 	   8.
       	Height		: 	        8.
       	Weight		: 	        8.
       	Result1		: 	        8.
