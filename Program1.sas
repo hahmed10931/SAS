@@ -10,7 +10,7 @@ input	Site: 1.
 	Race: $8.
 	Dosedate: mmddyy8.
 	Height: 8.
-	Weight: 8.
+	weight: 8.
 	Result1: 8.
 	Result2: 8.
 	Result3: 8.;
