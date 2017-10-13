@@ -3,7 +3,7 @@ Programming Assignment I
 Name: Joshua Song
 */
 data Study;
-infile '/courses/dc4508e5ba27fe300/c_6269/suppTRP-1062.txt' missover;
+infile '/courses/dc4508e5ba27fe300/c_629/suppTRP-1062.txt' missover;
 input Site		: 	1.	
       Pt		: 	$2.
       Sex		: 	$8.
