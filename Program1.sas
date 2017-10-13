@@ -4,16 +4,16 @@ Name: Joshua Song
 */
 data Study;
 infile '/courses/dc4508e5ba27fe300/c_6269/suppTRP-1062.txt' missover;
-input	Site	: 	1.	
-	Pt	: 	$2.
-	Sex	: 	$8.
-	Race	: 	$8.
-	Dosedate: 	mmddyy8.
-	Height	: 	8.
-	weight	: 	8.
-	Result1	: 	8.
-	Result2	: 	8.
-	Result3	: 	8.
+input	Site		: 	1.	
+	Pt		: 	$2.
+	Sex		: 	$8.
+	Race		: 	$8.
+	Dosedate	: 	mmddyy8.
+	Height		: 	8.
+	weight		: 	8.
+	Result1		: 	8.
+	Result2		: 	8.
+	Result3		: 	8.
 	;
 	if DoseDate = '1997' then DoseLot = 'S0576';
 	if DoseDate = '1998' or > '10 January 1998' then DoseLot = 'P1122';
