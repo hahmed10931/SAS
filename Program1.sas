@@ -15,6 +15,9 @@ input Site		: 	1.
       Result2		: 	8.
       Result3		: 	8.
       ;
+      /*
+      	This part is just my logic, it needs to be fixed since it is filled with errors.
+      */
       if DoseDate = '1997' then DoseLot = 'S0576';
       if DoseDate = '1998' or > '10 January 1998' then DoseLot = 'P1122';
       if DoseDate > '10 January 1998' then DoseLot = 'P0526';
