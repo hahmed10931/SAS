@@ -2,7 +2,9 @@
 
 Programming Assignment I
 
-Name: Joshua Song
+Names: Joshua Song
+Hassan Ahmed
+
 
 */
 data Study;
