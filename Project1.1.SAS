@@ -30,7 +30,7 @@ run;
       if Limit = 0.02 then prot_amend = 'P0526';
       if DoesLot = 'S0576' and 'P1122' then Limit = '0.02';
       if DoesLot = 'Missing' then prot_amend = 'Missing' and Limit = 'Missing';
-
+run;
 
 proc format;
      value Site  'J' = 'Aurora Health Associates'
