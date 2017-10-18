@@ -57,7 +57,7 @@ proc print data=Study;
 	*/
 	var Study Site Pt DoseDate Sex Race Height Weight Result1 Result2 Result3 prot_amend Limit site_name;
 	format Sex sex.
-		   site_name site_name
+		   site_name site_name.
 		   Race Race.
 		   DoseDate date9.;
 run;
