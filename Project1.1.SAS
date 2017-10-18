@@ -22,17 +22,17 @@ data Study;
 format DoseDate date9.;
 run;
 
-proc print data = DoesLot;
+proc print data = DoseLot;
       if DoseDate = 1997 then DoseLot = 'S0576';
       if DoseDate = 1998 or > '10Jan1998' then DoseLot = 'P1122';
       if DoseDate > '10Jan1998' then DoseLot = 'P0526';
 run;
 
 data print data = prot_amend Limit;
-      if DoesLot = 'P0526' then prot_amend = 'B';
+      if DoseLot = 'P0526' then prot_amend = 'B';
       if Limit = 0.03 then prot_amend = 'A';
       if Limit = 0.02 then prot_amend = 'P0526';
-      if DoesLot = 'S0576' and 'P1122' then Limit = '0.02';
+      if DoseLot = 'S0576' and 'P1122' then Limit = '0.02';
 run;
 
 proc format;
