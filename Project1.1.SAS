@@ -38,8 +38,7 @@ run;
 proc format;
      value Site  'J' = 'Aurora Health Associates'
 		'Q' = 'Omaha Medical Center'
-	        'R' =  'Sherwin Heights Healthcare'
-     ; 
+	        'R' =  'Sherwin Heights Healthcare'; 
 
      value Sex 2 = 'Male'
 		1 = 'Female';
