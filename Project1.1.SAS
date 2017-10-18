@@ -33,7 +33,7 @@ proc Limit;
       if DoseLot = 'P0526' then prot_amend = 'B';
       if Limit = 0.03 then prot_amend = 'A';
       if Limit = 0.02 then prot_amend = 'P0526';
-      if DoseLot = 'S0576' and 'P1122' then Limit = '0.02';
+      if DoseLot = 'S0576' and 'P1122' then Limit = 0.02;
 run;
 
 
