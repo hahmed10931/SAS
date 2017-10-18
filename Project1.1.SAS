@@ -36,7 +36,7 @@ data print data = prot_amend Limit;
 run;
 
 proc format;
-     value Site  'J' = 'Aurora Health Associates'
+     value site_name  'J' = 'Aurora Health Associates'
 		'Q' = 'Omaha Medical Center'
 	        'R' =  'Sherwin Heights Healthcare'; 
 
@@ -50,9 +50,13 @@ proc format;
 run;
 
 proc print data=Study;
-	/*var Site Pt Sex Race DoseDate Height Weight Result1 Result2 Result3;*/
-	var Site Pt DoseDate prot_amend Limit site_name;
+	/*var Site Pt Sex Race DoseDate Height Weight Result1 Result2 Result3;
+	@Hassan: Your code above there is nothing wrong but it was lacking the requeired variables. I improved it by adding 
+	all 14 variables. I added them so we can all show that we have all 14 variables we used. 
+	*/
+	var Study Site Pt DoseDate Sex Race Height Weight Result1 Result2 Result3 prot_amend Limit site_name;
 	format Sex sex.
+		   site_name site_name
 		   Race Race.
 		   DoseDate date9.;
 run;
