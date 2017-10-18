@@ -48,16 +48,7 @@ proc format;
 		        3 = 'Caucausian'
 		        4 = 'Other';
 run;
-/*
-label names  Site = 'Site'.	
-		  Pt =  'Patient'
-		  Sex = 'Patient Sex'
-		  Race = 'Patient Race'
-		  Dosedate = 'Dose Date'
-		  prot_amend = 'Protocol Amendment'
-		  Limit = 'Lower Limit of Detection'
-		  site_name = 'Site Name';
-*/
+
 proc print data=Study;
 	/*var Site Pt Sex Race DoseDate Height Weight Result1 Result2 Result3;*/
 	var Site Pt DoseDate prot_amend Limit site_name;
