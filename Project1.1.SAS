@@ -28,7 +28,8 @@ proc DoseLot;
       if DoseDate > '10Jan1998' then DoseLot = 'P0526';
 run;
 
-proc prot_amend Limit;
+proc prot_amend 
+proc Limit;
       if DoseLot = 'P0526' then prot_amend = 'B';
       if Limit = 0.03 then prot_amend = 'A';
       if Limit = 0.02 then prot_amend = 'P0526';
