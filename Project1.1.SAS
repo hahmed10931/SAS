@@ -27,23 +27,27 @@ data Study;
 	if DoseDate = . then DoseLot = .;
 
 	if Doselot = 'P0526' then do;
-	prot_amend = 'B';
-	if Sex = 1
+	if Sex = '1'
 	then Limit = 0.03;
-	if Sex = 2
+	if Sex = '2'
 	then Limit = 0.02;
+	prot_amend = 'B';
 	end;
+	
 	if Doselot = 'S0576' or Doselot = 'P1122' then do;
 	prot_amend = 'A';
 	Limit = 0.02;
-	end;	
+	end;
+	
+	length site_name $30.;
+	select (Site);
+	when ('J') site_name = 'Aurora Health Associates';
+	when ('R') site_name = 'Sherwin Heights Healthcare';
+	otherwise;
+	end;
 run;
 
 proc format;
-/*Fixing needed*/
-     value site_name 'J' = 'Aurora Health Associates'
-	                 'R' =  'Sherwin Heights Healthcare'; 
-
      value Sex 	2 = 'Male'
 				1 = 'Female';
 
