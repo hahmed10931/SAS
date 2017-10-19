@@ -20,25 +20,28 @@ data Study;
       	;
 
 	format DoseDate date9.;
-	if DoseDate lt '10JAN1998'd and DoseDate < '21DEC1997'd
-	then DoseLot = 'S0576';
-	if DoseDate le '10JAN1998'd and DoseDate <= '10JAN1998'd
-	then DoseLot = 'P1122';
-	if DoseDate > '10JAN1998'd 
-	then DoseLot = 'P0526';
-	if DoseDate = .
-	then DoseLot = .;
 	
+	if DoseDate lt '31DEC1997'd then DoseLot = 'P0576';
+	if DoseDate <= '10JAN1989'd and DoseDate > '31DEC1997'd then DoseLot = 'P1122';
+	if DoseDate gt '10JAN1998'd then DoseLot = 'S0526';
+	if DoseDate = . then DoseLot = .;
+	/* Fix the P1122 part */
+
+/* Fixing needed	
 	if DoseLot = 'P0526' then do;  
 	prot_amend = 'B';
 	else prot_amend = 'A' and Limit = 0.02;
+	end;
 	
 	if Sex = 'Female' then do;
 	Limit = 0.03;
 	else Limit = 0.02;
+	end;
+*/	
 run;
 
 proc format;
+/*Fixing needed*/
      value site_name 'J' = 'Aurora Health Associates'
 	                 'R' =  'Sherwin Heights Healthcare'; 
 
