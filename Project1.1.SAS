@@ -22,22 +22,22 @@ data Study;
 	format DoseDate date9.;
 	
 	if DoseDate lt '31DEC1997'd then DoseLot = 'P0576';
-	if DoseDate <= '10JAN1989'd and DoseDate > '31DEC1997'd then DoseLot = 'P1122';
+	if DoseDate le '10JAN1998'd and DoseDate gt '31DEC1997'd then DoseLot = 'P1122';
 	if DoseDate gt '10JAN1998'd then DoseLot = 'S0526';
 	if DoseDate = . then DoseLot = .;
 	/* Fix the P1122 part */
 
-/* Fixing needed	
-	if DoseLot = 'P0526' then do;  
+	if Doselot = 'P0526' then do;
 	prot_amend = 'B';
-	else prot_amend = 'A' and Limit = 0.02;
+	if Sex = 1
+	then Limit = 0.03;
+	if Sex = 2
+	then Limit = 0.02;
 	end;
-	
-	if Sex = 'Female' then do;
-	Limit = 0.03;
-	else Limit = 0.02;
-	end;
-*/	
+	if Doselot = 'S0576' or Doselot = 'P1122' then do;
+	prot_amend = 'A';
+	Limit = 0.02;
+	end;	
 run;
 
 proc format;
