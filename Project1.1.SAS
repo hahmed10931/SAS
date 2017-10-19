@@ -43,7 +43,6 @@ data Study;
 	select (Site);
 	when ('J') site_name = 'Aurora Health Associates';
 	when ('R') site_name = 'Sherwin Heights Healthcare';
-	otherwise;
 	end;
 run;
 
@@ -57,7 +56,7 @@ proc format;
 		        4 = 'Other';
 run;
 proc print data=Study;
-	var Site Pt Sex Race DoseDate DoseLot Height Weight Result1 Result2 Result3;
+	var Site Pt Sex Race site_name prot_amend Limit DoseDate DoseLot Height Weight Result1 Result2 Result3;
 	
 	/*var Study Site Pt DoseDate Sex Race Height Weight Result1 Result2 Result3 prot_amend Limit site_name;
 	*/
