@@ -1,7 +1,6 @@
 /*
 Programming Assignment I
 Names: Hassan Ahmed
-Hugh Murray
 Joshua Song
 Sanchit Thakrar
 */
@@ -20,6 +19,7 @@ data Study;
       	;
 
 	format DoseDate date9.;
+	
 	
 	if DoseDate lt '31DEC1997'd then DoseLot = 'S0576';
 	if DoseDate le '10JAN1998'd and DoseDate gt '31DEC1997'd then DoseLot = 'P1122';
@@ -57,10 +57,17 @@ proc format;
 run;
 proc print data=Study;
 	var Site Pt Sex Race site_name prot_amend Limit DoseDate DoseLot Height Weight Result1 Result2 Result3;
-	
-	/*var Study Site Pt DoseDate Sex Race Height Weight Result1 Result2 Result3 prot_amend Limit site_name;
-	*/
 	format Sex 			Sex.
 		   Race 		Race.
 		   DoseDate 	date9.;
+run;
+proc format; 
+label Site = 'Study Site'
+			Pt = 'Patient'
+			DoseDate = 'Dose Date'
+			DoseLot = 'Dose Lot'
+			prot_amend = 'Protocol Amendment'
+			Limit = 'Lower Limit of Detection'
+			site_name = 'Site Name'
+			;
 run;
