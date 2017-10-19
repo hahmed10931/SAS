@@ -1,8 +1,8 @@
 /*
 Programming Assignment I
-Names: Joshua Song
-Hassan Ahmed
+Names: Hassan Ahmed
 Hugh Murray
+Joshua Song
 Sanchit Thakrar
 */
 data Study;
