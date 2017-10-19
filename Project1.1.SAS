@@ -16,24 +16,32 @@ data Study;
       	Result2		: 	        8.
       	Result3		: 	        8.
       	;
-	format DoseDate date9.;
-run;
 
-proc DoseLot;
-      if DoseDate = 1997 then DoseLot = 'S0576';
-      if DoseDate = 1998 or > '10Jan1998' then DoseLot = 'P1122';
-      if DoseDate > '10Jan1998' then DoseLot = 'P0526';
-      if DoseLot = 'P0526' then prot_amend = 'B';
-      if Limit = 0.03 
-      else prot_amend = 'A';
-      if Limit = 0.02 then prot_amend = 'P0526';
-      if DoseLot = 'S0576' and 'P1122' then Limit = 0.02;
+	format DoseDate date9.;
+	if DoseDate lt '10JAN1998'd and DoseDate < '21DEC1997'd
+	then DoseLot = 'S0576';
+	if DoseDate le '10JAN1998'd and DoseDate <= '10JAN1998'd
+	then DoseLot = 'P1122';
+	if DoseDate > '10JAN1998'd 
+	then DoseLot = 'P0526';
+	if DoseDate = .
+	then DoseLot = .;
+	
+	if DoseLot = 'P0526'  
+	then prot_amend = 'B';
+	if Sex = 1
+	then Limit = 0.03;
+	if Sex = 2
+	then Limit = 0.02;
+	if DoseLot = 'S0576' or 'P1122'
+	then prot_amend = 'A';
+	Limit = 0.02;
+	
 run;
 
 proc format;
-     value site_name  J = 'Aurora Health Associates'
-					 Q = 'Omaha Medical Center'
-	                 R =  'Sherwin Heights Healthcare'; 
+     value site_name 'J' = 'Aurora Health Associates'
+	                 'R' =  'Sherwin Heights Healthcare'; 
 
      value Sex 	2 = 'Male'
 				1 = 'Female';
@@ -44,12 +52,11 @@ proc format;
 		        4 = 'Other';
 run;
 proc print data=Study;
-	var Site Pt Sex Race DoseDate Height Weight Result1 Result2 Result3;
+	var Site Pt Sex Race DoseDate DoseLot Height Weight Result1 Result2 Result3;
 	
 	/*var Study Site Pt DoseDate Sex Race Height Weight Result1 Result2 Result3 prot_amend Limit site_name;
 	*/
-	format Sex 			sex.
-		   site_name 	site_name.
+	format Sex 			Sex.
 		   Race 		Race.
 		   DoseDate 	date9.;
 run;
