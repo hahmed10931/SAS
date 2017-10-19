@@ -2,6 +2,8 @@
 Programming Assignment I
 Names: Joshua Song
 Hassan Ahmed
+Hugh Murray
+Sanchit Thakrar
 */
 data Study;
 	infile "/courses/dc4508e5ba27fe300/c_629/suppTRP-1062.txt" dsd missover;
@@ -27,16 +29,13 @@ data Study;
 	if DoseDate = .
 	then DoseLot = .;
 	
-	if DoseLot = 'P0526'  
-	then prot_amend = 'B';
-	if Sex = 1
-	then Limit = 0.03;
-	if Sex = 2
-	then Limit = 0.02;
-	if DoseLot = 'S0576' or 'P1122'
-	then prot_amend = 'A';
-	Limit = 0.02;
+	if DoseLot = 'P0526' then do;  
+	prot_amend = 'B';
+	else prot_amend = 'A' and Limit = 0.02;
 	
+	if Sex = 'Female' then do;
+	Limit = 0.03;
+	else Limit = 0.02;
 run;
 
 proc format;
