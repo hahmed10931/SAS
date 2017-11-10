@@ -117,6 +117,7 @@ proc sort data = study;
 run;
 
 data pat_info;
+   input mean_result BMI;
    merge study DEMOG1062;
    by pt site;
    length pt_id $ 15;
@@ -131,17 +132,17 @@ data pat_info;
 	BMI = round((Weight / ((Height)**2) * 703, 0.1);
 /* Part 12: ??? */ 
 /* Looks correct but still may consider checking it */
-  	if prot_amend = 'A' then est_end = 120;
-  	else if prot_amend = 'B' then est_end = 90;
+  	if prot_amend='A' then do;
+    est_end=120;
+    if prot_amend='B' then est_end=90;
   	end;
-  	label est_end = 'Estimated Termination Date';
+  	label est_end='Estimated Termination Date';
 run;
 
  	
 /* Part 13: ??? */
 proc print data=pat_info;
 title "Listing of Baseline Patient Information for Patients Having Weight > 250";
-/*var site_name pt age sex race height weight dosedate doselot;*/
 label site_name = 'Site Name'
 		pt = 'Patient'
 		age = 'Age'
