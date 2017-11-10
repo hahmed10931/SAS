@@ -1,5 +1,6 @@
 /* Name: Joshua Song
 	Hassan Ahmed 
+	Sanchit 
 */
 /* /* Assignment1.sas */
  
@@ -293,16 +294,35 @@ Use 1 programming statement for this item.*/
 run;  	
 /* Part 13: ??? */
 proc print data=pat_info;
-	/*Add code here*/
+title "Listing of Baseline Patient Information for Patients Having Weight > 250";
+var SiteName Patient Age Sex Race Height Weight DoseDate DoseLot;
+label site_name = "Site Name"
+		pt = "Patient"
+		age = "Age"
+		sex = "Sex"
+		race = "Race"
+		height = "Height"
+		weight = "Weight"
+		dosedate = "Date of First Dose"
+		doselot = "Dose Lot Number";
 run;
 /* Part 14: ??? */
+proc means data=pat_info;
+/* Variables to be used: sex result1 result2 result3 height weight */
+run;
 /* Part 15: ??? */
 data wt_cat;
 	for wt_cat = 1 the descriptor is <= 'Median Weight'
 	for wt_cat = 2 the descriptor is > 'Median Weight'; 
 run;
 /* Part 16: ??? */
-	if Race = 'Caucasian' then race = 'White'
+proc freq data=pat_info;
+	format race two.;
+	if race = 'Caucasian' then race = 'White'
 	else then race = 'Other';
 run;
 /* Part 17: ??? */
+proc univariate data=wt_cat;
+/* May be incorrect. Consider correcting this */
+/* Add code here */
+run;
