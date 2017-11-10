@@ -108,7 +108,7 @@ run;
 /* Some parts are incomplete. I will explain the location of missing code */
 /* Item#7 Combine the data from above */
 libname class '/courses/dc4508e5ba27fe300/c_629/saslib';
-proc sort data = class.DEMOG1062 out = demog1062i; 
+proc sort data = class.DEMOG1062 out = demog1062; 
     by pt site;
 run;
 
@@ -116,14 +116,13 @@ proc sort data = study;
     by pt site;
 run;
 
-data Pat_Info;
-   merge study DEMOG1062i;
+data pat_info;
+   merge study DEMOG1062;
    by pt site;
-   var pt_id;
-	pt_id = Site ||'-'|| pt;
-	if missing(site) or
-	missing(pt) then pt_id = '';
-label pt_id = 'Site-Patient';
+   length pt_id $ 15;
+   if pt = . or Site = . then pt_id = .;
+   pt_id = catx('_','Site','Pt');
+*/
 /* Part 9:  ??? */
 	if dose_date = missing then dose_qtr = missing;
 /* Part 10: ??? */
@@ -132,25 +131,17 @@ label pt_id = 'Site-Patient';
 	BMI = round((Weight / ((Height)**2) * 703, 0.1);
 /* Part 12: ??? */ 
 /* Looks correct but still may consider checking it */
-  	if prot_amend = 'A' then do;
-  		est_end = 120;
-  	else if prot_amend = 'B' then do;
-  		est_end = 90;
+  	if prot_amend = 'A' then est_end = 120;
+  	else if prot_amend = 'B' then est_end = 90;
   	end;
   	label est_end = 'Estimated Termination Date';
 run;
 
-/*Item#8 Creating pt_id
-data Pat_Info;
-   length pt_id $ 15;
-   if Pt = . or Site = . then pt_id = .;
-   pt_id = catx('_','Site','Pt');
-run; */
  	
 /* Part 13: ??? */
 proc print data=pat_info;
 title "Listing of Baseline Patient Information for Patients Having Weight > 250";
-var site_name pt age sex race height weight dosedate doselot;
+/*var site_name pt age sex race height weight dosedate doselot;*/
 label site_name = 'Site Name'
 		pt = 'Patient'
 		age = 'Age'
@@ -175,22 +166,18 @@ run;
 that's what prompted my question. I found that the way
 I created the missing value for doselot should have been ' ' instead of . */
 title "PROC FREQ Using the MISSING OPTION";
-proc freq data=pat_info.grouping;
+proc freq data=pat_info.race;
 	tables race / missing;
 	format race two.;
-	if race = 'Caucasian' then race = 'White'
-	else then race = 'Other';
 run;
 
 title "PROC FREQ Without the MISSING OPTION";
-proc freq data=pat_info.grouping;
+proc freq data=pat_info.race;
 	tables race;
 	format race two.;
-	if race = 'Caucasian' then race = 'White'
-	else then race = 'Other';
 run;
 /* Part 17: ??? */
 proc univariate data=wt_cat;
 /* May be incorrect. Consider correcting this */
-/* Add code here */
+var wt_cat;
 run;
