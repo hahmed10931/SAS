@@ -159,15 +159,15 @@ run;
 proc print data=pat_info;
 title "Listing of Baseline Patient Information for Patients Having Weight > 250";
 var SiteName Patient Age Sex Race Height Weight DoseDate DoseLot;
-label site_name = "Site Name"
-		pt = "Patient"
-		age = "Age"
-		sex = "Sex"
-		race = "Race"
-		height = "Height"
-		weight = "Weight"
-		dosedate = "Date of First Dose"
-		doselot = "Dose Lot Number";
+label site_name = 'Site Name'
+		pt = 'Patient'
+		age = 'Age'
+		sex = 'Sex'
+		race = 'Race'
+		height = 'Height'
+		weight = 'Weight'
+		dosedate = 'Date of First Dose'
+		doselot = 'Dose Lot Number';
 run;
 /* Part 14: ??? */
 proc means data=pat_info;
