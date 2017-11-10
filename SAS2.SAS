@@ -119,31 +119,14 @@ run;
 data Pat_Info;
    merge study DEMOG1062i;
    by pt site;
-run;
-
-/*Item#8 Creating pt_id
-data Pat_Info;
-   length pt_id $ 15;
-   if Pt = . or Site = . then pt_id = .;
-   pt_id = catx('_','Site','Pt');
-run; */
-
-
-
-/*Part 8*/
-data pt_id;
+   var pt_id;
 	pt_id = Site ||'-'|| pt;
 	if missing(site) or
 	missing(pt) then pt_id = '';
 label pt_id = 'Site-Patient';
-/* Part 9:  ??? 
-Using 2 functions (one function will be embedded within the other) to create a 
-variable dose_qtr by concatenating the letter ‘Q’ to the number which 
-corresponds to the quarter of the year in which the dose date falls.
-Values of dose_qtr should look like Q1, Q2, etc. 
-If the dose date is missing then dose_qtr should be missing.
-Use 1 programming statement for this item.*/
+/* Part 9:  ??? */
 	if dose_date = missing then dose_qtr = missing;
+/* Part 10: ??? */
 	mean_result = round(mean(result1+result2+result3, 0.01)); 
 /* Part 11: BMI Formula*/
 	BMI = round((Weight / ((Height)**2) * 703, 0.1);
@@ -154,7 +137,15 @@ Use 1 programming statement for this item.*/
   		est_end = 90;
   	end;
   	label est_end = 'Estimated Termination Date';
-run;  	
+run;
+
+/*Item#8 Creating pt_id
+data Pat_Info;
+   length pt_id $ 15;
+   if Pt = . or Site = . then pt_id = .;
+   pt_id = catx('_','Site','Pt');
+run; */
+ 	
 /* Part 13: ??? */
 proc print data=pat_info;
 title "Listing of Baseline Patient Information for Patients Having Weight > 250";
