@@ -129,12 +129,15 @@ data Pat_Info;
 run; */
 
 
-	
 
 /*Part 8*/
-data Site_pt;
-	set Site pt;
+data pt_id;
+	pt_id = Site ||'-'|| pt;
+	if missing(site) or
+	missing(pt) then pt_id = '';
+label pt_id = 'Site Patient';
 run;
+
 data pat_info;
 	infile '/courses/dc4508e5ba27fe300/c_629/saslib';
 	/*The infile is the location in which DEMOG1062 is located*/
