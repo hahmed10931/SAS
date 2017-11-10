@@ -108,7 +108,7 @@ run;
 /* Some parts are incomplete. I will explain the location of missing code */
 /* Item#7 Combine the data from above */
 libname class '/courses/dc4508e5ba27fe300/c_629/saslib';
-proc sort data = class.DEMOG1062 out = demog1062; 
+proc sort data = class.DEMOG1062 out = DEMOG1062; 
     by pt site;
 run;
 
