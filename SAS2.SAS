@@ -158,6 +158,7 @@ proc means data=pat_info;
 run;
 /* Part 15: ??? */
 data wt_cat;
+label wt_cat = 'Median Weight Category';
 	for wt_cat = 1 the descriptor is <= 'Median Weight'
 	for wt_cat = 2 the descriptor is > 'Median Weight'; 
 run;
