@@ -133,7 +133,7 @@ label pt_id = 'Site-Patient';
 /* Part 12: ??? */ 
   	if prot_amend = 'A' then do;
   		est_end = 120;
-  	if prot_amend = 'B' then do;
+  	else if prot_amend = 'B' then do;
   		est_end = 90;
   	end;
   	label est_end = 'Estimated Termination Date';
