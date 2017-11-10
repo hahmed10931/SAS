@@ -127,9 +127,9 @@ data pat_info;
 /* Part 9:  ??? */
 	if dose_date = missing then dose_qtr = missing;
 /* Part 10: ??? */
-	mean_result = round(mean(result1+result2+result3, 0.01)); 
+	mean_result = mean(result1+result2+result3); 
 /* Part 11: BMI Formula*/
-	BMI = round((Weight / ((Height)**2) * 703, 0.1);
+	BMI = round(Weight / (Height**2) * 703, 0.1);
 /* Part 12: ??? */ 
 /* Looks correct but still may consider checking it */
   	if prot_amend='A' then do;
@@ -138,8 +138,7 @@ data pat_info;
   	end;
   	label est_end='Estimated Termination Date';
 run;
-
- 	
+	
 /* Part 13: ??? */
 proc print data=pat_info;
 title "Listing of Baseline Patient Information for Patients Having Weight > 250";
@@ -154,8 +153,8 @@ label site_name = 'Site Name'
 		doselot = 'Dose Lot Number';
 run;
 /* Part 14: ??? */
-proc means data=pat_info;
-/* Variables to be used: sex result1 result2 result3 height weight */
+proc means data=pat_info.sex mean stderr median min max maxdec=1; 
+	var result1 result2 result3 height weight;
 run;
 /* Part 15: ??? */
 data wt_cat;
