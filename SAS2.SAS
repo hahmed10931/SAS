@@ -131,6 +131,7 @@ label pt_id = 'Site-Patient';
 /* Part 11: BMI Formula*/
 	BMI = round((Weight / ((Height)**2) * 703, 0.1);
 /* Part 12: ??? */ 
+/* Looks correct but still may consider checking it */
   	if prot_amend = 'A' then do;
   		est_end = 120;
   	else if prot_amend = 'B' then do;
@@ -149,7 +150,7 @@ run; */
 /* Part 13: ??? */
 proc print data=pat_info;
 title "Listing of Baseline Patient Information for Patients Having Weight > 250";
-var SiteName Patient Age Sex Race Height Weight DoseDate DoseLot;
+var site_name pt age sex race height weight dosedate doselot;
 label site_name = 'Site Name'
 		pt = 'Patient'
 		age = 'Age'
@@ -170,6 +171,9 @@ data wt_cat;
 	for wt_cat = 2 the descriptor is > 'Median Weight'; 
 run;
 /* Part 16: ??? */
+/* Hint: I was receiving a missing  value even without the MISSING option, 
+that's what prompted my question. I found that the way
+I created the missing value for doselot should have been ' ' instead of . */
 title "PROC FREQ Using the MISSING OPTION";
 proc freq data=pat_info.grouping;
 	tables race / missing;
