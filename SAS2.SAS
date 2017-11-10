@@ -170,7 +170,17 @@ data wt_cat;
 	for wt_cat = 2 the descriptor is > 'Median Weight'; 
 run;
 /* Part 16: ??? */
-proc freq data=pat_info;
+title "PROC FREQ Using the MISSING OPTION";
+proc freq data=pat_info.grouping;
+	tables race / missing;
+	format race two.;
+	if race = 'Caucasian' then race = 'White'
+	else then race = 'Other';
+run;
+
+title "PROC FREQ Without the MISSING OPTION";
+proc freq data=pat_info.grouping;
+	tables race;
 	format race two.;
 	if race = 'Caucasian' then race = 'White'
 	else then race = 'Other';
