@@ -135,18 +135,7 @@ data pt_id;
 	pt_id = Site ||'-'|| pt;
 	if missing(site) or
 	missing(pt) then pt_id = '';
-label pt_id = 'Site Patient';
-run;
-
-data pat_info;
-	infile '/courses/dc4508e5ba27fe300/c_629/saslib';
-	/*The infile is the location in which DEMOG1062 is located*/
-	/* IDK if this is correct (The way I have it) but I have it as reference */
-	/* Concatinate Study and DEMOG1062*/
-	informat prot_amend = mmddyy10.;
-	/*Variables*/
-	input prot_amend, est_end, BMI;
-	
+label pt_id = 'Site-Patient';
 /* Part 9:  ??? 
 Using 2 functions (one function will be embedded within the other) to create a 
 variable dose_qtr by concatenating the letter ‘Q’ to the number which 
@@ -155,15 +144,9 @@ Values of dose_qtr should look like Q1, Q2, etc.
 If the dose date is missing then dose_qtr should be missing.
 Use 1 programming statement for this item.*/
 	if dose_date = missing then dose_qtr = missing;
-	
-
-/*Part 10: Mean*/
-	data Pat_info;
 	mean_result = round(mean(result1+result2+result3, 0.01)); 
-	run;
 /* Part 11: BMI Formula*/
 	BMI = round((Weight / ((Height)**2) * 703, 0.1);
-	run;
 /* Part 12: ??? */ 
   	if prot_amend = 'A' then do;
   		est_end = 120;
