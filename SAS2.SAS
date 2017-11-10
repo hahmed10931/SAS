@@ -106,7 +106,31 @@ Site, Pt, Dosedate, Doselot, prot_amend, Limit, site_name
         site_name='Site Name';
 run;
 /* Some parts are incomplete. I will explain the location of missing code */
-/* Part 7: Combine the data from above */
+/* Item#7 Combine the data from above */
+libname class '/courses/dc4508e5ba27fe300/c_629/saslib';
+proc sort data = class.DEMOG1062 out = demog1062i; 
+    by pt site;
+run;
+
+proc sort data = study;
+    by pt site;
+run;
+
+data Pat_Info;
+   merge study DEMOG1062i;
+   by pt site;
+run;
+
+/*Item#8 Creating pt_id
+data Pat_Info;
+   length pt_id $ 15;
+   if Pt = . or Site = . then pt_id = .;
+   pt_id = catx('_','Site','Pt');
+run; */
+
+
+	
+
 /*Part 8*/
 data Site_pt;
 	set Site pt;
@@ -130,12 +154,13 @@ Use 1 programming statement for this item.*/
 	if dose_date = missing then dose_qtr = missing;
 	
 
-/* Part 10: Mean*/
-	input mean_result;
+/*Part 10: Mean*/
+	data Pat_info;
 	mean_result = round(mean(result1+result2+result3, 0.01)); 
+	run;
 /* Part 11: BMI Formula*/
 	BMI = round((Weight / ((Height)**2) * 703, 0.1);
-	/*If either Weight or Height are missing BMI is missing*/
+	run;
 /* Part 12: ??? */ 
   	if prot_amend = 'A' then do;
   		est_end = 120;
