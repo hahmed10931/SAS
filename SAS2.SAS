@@ -140,9 +140,9 @@ data pat_info;
 /* Looks correct but still may consider checking it */
   	if prot_amend='A' then do;
     	est_end=120;
-    if prot_amend='B' then do; 
+    else if prot_amend='B' then do; 
     	est_end=90;
-    else if missing(prot_amend) then do;
+    else if prot_amend = ' ' then do;
 		est_end = ' ';
   	end;
   	label est_end='Estimated Termination Date';
@@ -163,10 +163,10 @@ label site_name = 'Site Name'
 		format dosedate mmddyy8.;
 run;
 /* Part 14: ??? */
-proc means data=pat_info2 n mean stderr median min max maxdec=1; 
+proc means data=pat_info n mean stderr median min max maxdec=1; 
 	class sex;
 		var result1 result2 result3 height weight;
-		output out = medianWeight
+		output out = wt_cat;
 		median(weight) = med_wt;
 run;
 /* Part 15: ??? */
@@ -176,14 +176,14 @@ label wt_cat = 'Median Weight Category';
 	else if wt_cat = 2 then descriptor > 'Median Weight'; 
 run;
 /* Part 16: ??? */
-proc freq data=pat_info3;
+proc freq data=pat_info;
 	tables doselot wt_cat / nocum
 	missing;
 	format race raceGroup.;
 	weight weightGroup.;
 run;
 /* Part 17: ??? */
-proc univariate data=pt_info3;
+proc univariate data=pt_info;
 	var wt_cat;
 	id pt_id;
 run;
