@@ -183,7 +183,7 @@ proc freq data=pat_info;
 	weight weightGroup.;
 run;
 /* Part 17: ??? */
-proc univariate data=pt_info;
+proc univariate data=pat_info;
 	var wt_cat;
 	id pt_id;
 run;
