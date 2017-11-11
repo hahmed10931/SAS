@@ -1,6 +1,6 @@
 /* Name: Joshua Song
 	Hassan Ahmed
-	Sanchit
+	Sanchit Thakrar
 */
 /* /* Assignment1.sas */
  
@@ -123,25 +123,34 @@ data pat_info;
    length pt_id $ 15;
    if pt = . or Site = . then pt_id = .;
    pt_id = catx('_','Site','Pt');
-*/
 /* Part 9:  ??? */
-	if dose_date = missing then dose_qtr = missing;
+	dose_qtr = cats('Q',qtr(dosedate)); 
+	if missing(dosedate)
+	then dose_qtr = ' ';
 /* Part 10: ??? */
-	mean_result = mean(result1+result2+result3); 
+	if n (of result1 - result3)
+	then mean_result = mean(of result1 - result3); 
 /* Part 11: BMI Formula*/
-	BMI = round(Weight / (Height**2) * 703, 0.1);
+	BMI = weight/(height ** 2) * 703;
+	if missing (weight) or missing (height) 
+	then BMI = ' ';
+	format BMI 4.1;
+
 /* Part 12: ??? */ 
 /* Looks correct but still may consider checking it */
   	if prot_amend='A' then do;
-    est_end=120;
-    if prot_amend='B' then est_end=90;
+    	est_end=120;
+    if prot_amend='B' then do; 
+    	est_end=90;
+    else if missing(prot_amend) then do;
+		est_end = ' ';
   	end;
   	label est_end='Estimated Termination Date';
 run;
 	
 /* Part 13: ??? */
 proc print data=pat_info;
-title "Listing of Baseline Patient Information for Patients Having Weight > 250";
+title 'Listing of Baseline Patient Information for Patients Having Weight > 250';
 label site_name = 'Site Name'
 		pt = 'Patient'
 		age = 'Age'
@@ -151,34 +160,30 @@ label site_name = 'Site Name'
 		weight = 'Weight'
 		dosedate = 'Date of First Dose'
 		doselot = 'Dose Lot Number';
+		format dosedate mmddyy8.;
 run;
 /* Part 14: ??? */
-proc means data=pat_info.sex mean stderr median min max maxdec=1; 
-	var result1 result2 result3 height weight;
+proc means data=pat_info2 n mean stderr median min max maxdec=1; 
+	class sex;
+		var result1 result2 result3 height weight;
+		output out = medianWeight
+		median(weight) = med_wt;
 run;
 /* Part 15: ??? */
 data wt_cat;
 label wt_cat = 'Median Weight Category';
-	for wt_cat = 1 the descriptor is <= 'Median Weight'
-	for wt_cat = 2 the descriptor is > 'Median Weight'; 
+	if wt_cat = 1 then descriptor <= 'Median Weight';
+	else if wt_cat = 2 then descriptor > 'Median Weight'; 
 run;
 /* Part 16: ??? */
-/* Hint: I was receiving a missing  value even without the MISSING option, 
-that's what prompted my question. I found that the way
-I created the missing value for doselot should have been ' ' instead of . */
-title "PROC FREQ Using the MISSING OPTION";
-proc freq data=pat_info.race;
-	tables race / missing;
-	format race two.;
-run;
-
-title "PROC FREQ Without the MISSING OPTION";
-proc freq data=pat_info.race;
-	tables race;
-	format race two.;
+proc freq data=pat_info3;
+	tables doselot wt_cat / nocum
+	missing;
+	format race raceGroup.;
+	weight weightGroup.;
 run;
 /* Part 17: ??? */
-proc univariate data=wt_cat;
-/* May be incorrect. Consider correcting this */
-var wt_cat;
+proc univariate data=pt_info3;
+	var wt_cat;
+	id pt_id;
 run;
