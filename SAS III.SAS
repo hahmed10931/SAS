@@ -29,4 +29,12 @@ proc report data=learn.bicycles nowd headline ls=80;
                 format=comma8.;
   define TotalSales / sum "Total Sales (in thousands)"
                       width=15 format=dollar10.;
+title "Average Blood Counts by Age Group";
+proc report data=learn.blood nowd headline;
+    column Gender BloodType AgeGroup, WBC AgeGroup, RBC;
+    define Gender   / group width=8;
+    define BloodType / group width=8 "Blood Group";
+    define AgeGroup / across "- Age Group -";
+    define WBC    / analysis mean format=comma8.;
+    deinfe RBC    / analysis mean format=8.2;
 run;
