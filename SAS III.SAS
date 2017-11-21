@@ -336,12 +336,16 @@ proc univariate data=pat_info_by;
 run;
 
 /*Prewritten Code for Part XVIII*/
+/* No errors or warnings yet but it is a good starting point */
 title "Summary of Mean Analyte Results by Weight Category and Sex";
-proc report data=learn.blood nowd headline;
-	column Gender BloodType AgeGroup,WBC AgeGroup,RBC;
-	define Gender / group width=8;
-	define BloodType / group width=8 "Blood Group";
-	define Site / across "----- Site-----";
-	define WBC / analysis mean format=comma8.;
-	define RBC / analysis mean format=8.2;
+proc report data=pat_info_by nowd headline;
+	/*column weight sex BloodType site,result1,result2,result3;*/
+	column weight sex BloodType site;
+	define weight / group width=8 "Weight Category";
+	define sex / group width=8 "Sex";
+	define site / across "----- Site-----"; 
+run;
+/* Prewritten Code for Part XIX */
+proc report;
+/* Add code here */
 run;
