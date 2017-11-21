@@ -336,30 +336,12 @@ proc univariate data=pat_info_by;
 run;
 
 /*Prewritten Code for Part XVIII*/
-title "Demonstratig a Group usage";
-proc report data=learn.study nowd;
-	column Clinic HR Weight;
-	define Clinic / group width=11;
-	define HR / analysis mean "Average Heart Rate" width=12
-				format=5.;
-	define Weight / anlysis mean "Average Weight" width=12
-				format=6.;
+title "Summary of Mean Analyte Results by Weight Category and Sex";
+proc report data=learn.blood nowd headline;
+	column Gender BloodType AgeGroup,WBC AgeGroup,RBC;
+	define Gender / group width=8;
+	define BloodType / group width=8 "Blood Group";
+	define Site / across "----- Site-----";
+	define WBC / analysis mean format=comma8.;
+	define RBC / analysis mean format=8.2;
 run;
-/*Prewritten Code for Part XIX*/
-title "Summary of Mean Analytic Results by Weight Category and Sex";
-proc report data=learn.study nowd headline	
-			split = ' ' ls=74;
-		column Pt dosedate age sex Weight BMI BMICat AnalyteRes1 AnalyteRes1 Change
-		define Pt / "Patient" width=7;
-		define doesedate / "Dose Date" width=9 format=date9.;
-		define age /"Age" width=4 right;
-		define sex / "Sex" width=6;
-		define race / "Race" width=6;
-		define Weight / "Weight" width=6;
-		define BMI / "BMI" width=6; 
-		define BMICat / "BMI Category" width=6;
-		define AnalyteRes1 / "Analyte Result1" width=6;
-		define AnalyteRes2 / "Analyte Result2"
-		define Change / "Absolute Change" width=6;
-run;
-		
