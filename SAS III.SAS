@@ -337,6 +337,7 @@ run;
 
 /*Prewritten Code for Part XVIII*/
 /* No errors or warnings yet but it is a good starting point */
+
 title "Summary of Mean Analyte Results by Weight Category and Sex";
 proc report data=pat_info_by nowd headline;
 	/*column weight sex BloodType site,result1,result2,result3;*/
@@ -347,7 +348,11 @@ proc report data=pat_info_by nowd headline;
 	/*if weight <= med_wt;
 	else if weight > med_wt;*/
 run;
+
 /* Prewritten Code for Part XIX */
+/*
+title "Listing of Baseline Patient Characteristics";
+*/
 proc report;
 	/* Variables: Pt dosedate age sex race wt_cat BMI cat_BMI result1 result2 abs_change */
 	define cat_BMI / computed "BMI Category";
