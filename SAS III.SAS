@@ -352,6 +352,7 @@ proc report;
 	compute cat_BMI / character length=11;
 	if BMI < 18.5 then cat_BMI = "UNDERWEIGHT";
 	else if BMI > 25 and BMI < 30 then cat_BMI="OVERWEIGHT";
+	else if BMI > 18.5 and BMI < 25 them cat_BMI="Normal";
 	else if BMI > 30 then cat_BMI="OBESE";
 	endcomp;
 run;
