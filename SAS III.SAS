@@ -347,5 +347,10 @@ proc report data=pat_info_by nowd headline;
 run;
 /* Prewritten Code for Part XIX */
 proc report;
-/* Add code here */
+	define cat_BMI / computed "BMI Category";
+	compute cat_BMI / character length=11;
+	if BMI < 18.5 then cat_BMI = "UNDERWEIGHT";
+	else if BMI > 25 and BMI < 30 then cat_BMI="OVERWEIGHT";
+	else if BMI > 30 then cat_BMI="OBESE";
+	endcomp;
 run;
