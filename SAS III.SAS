@@ -1,5 +1,7 @@
 /* Assignment3.sas */
-
+/* Note: Hassan or Sanchit whoever is seeing this the code is almost finished.
+All we need to do is configure the parts in part 18 regarding weight category and the mean results for both sites.
+Part 19 I have written the BMI sections however it seems that it is not like fully complete yet. */
 proc format;
   value sex 
     1=Female 
