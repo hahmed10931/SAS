@@ -340,10 +340,12 @@ run;
 title "Summary of Mean Analyte Results by Weight Category and Sex";
 proc report data=pat_info_by nowd headline;
 	/*column weight sex BloodType site,result1,result2,result3;*/
-	column weight sex BloodType site;
+	column weight sex site;
 	define weight / group width=8 "Weight Category";
 	define sex / group width=8 "Sex";
-	define site / across "----- Site-----"; 
+	define site / across "----- Site-----";
+	/*if weight <= med_wt;
+	else if weight > med_wt;*/
 run;
 /* Prewritten Code for Part XIX */
 proc report;
