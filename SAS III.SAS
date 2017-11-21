@@ -346,7 +346,7 @@ proc report data=learn.study nowd;
 				format=6.;
 run;
 /*Prewritten Code for Part XIX*/
-title "Summary of Mean Analyte Results by Weight Category and Sex";
+title "Summary of Mean Analytic Results by Weight Category and Sex";
 proc report data=learn.study nowd headline	
 			split = ' ' ls=74;
 		column Pt dosedate age sex Weight BMI BMICat AnalyteRes1 AnalyteRes1 Change
