@@ -340,17 +340,19 @@ run;
 /*Prewritten Code for Part XVIII*/
 /* No errors or warnings yet but it is a good starting point */
 
-title "Summary of Mean Analyte Results by Weight Category and Sex";
-proc report data=pat_info_by nowd headline;
-	/*column weight sex BloodType site,result1,result2,result3;*/
-	column weight sex site;
-	define weight / group width=8 "Weight Category";
-	define sex / group width=8 "Sex";
-	define site / across "----- Site-----";
-	/*if weight <= med_wt;
-	else if weight > med_wt;*/
-run;
+title 'Summary of Mean Analyte Results by Weight Category and Sex';
+proc report data = pat_info_by nowindows headline;
+column wt_cat sex(site_name,(result1 result2 result3));  
+define wt_cat / group left 'Weight Category';
+define sex	/ group left;
 
+define site_name / across '-Site-';
+define result1 / analysis mean 'Mean Result1' width = 6 format = 4.3;
+define result2 / analysis mean 'Mean Result2' width = 6 format = 4.3;
+define result3 / analysis mean 'Mean Result3' width = 6 format = 4.3;
+break after wt_cat /skip;
+
+run;
 /* Prewritten Code for Part XIX */
 /*
 title "Listing of Baseline Patient Characteristics";
