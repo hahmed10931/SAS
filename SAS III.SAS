@@ -363,10 +363,5 @@ define analRes2 / 'Analyte Result 2';
 define absChange / 'Absolute Change';
 define age / 'Age';
 define wt_cat / "Weight Category";
-/*
-	if BMI < 18.5 then wt_cat = "UNDERWEIGHT";
-	else if BMI > 25 and BMI < 30 then wt_cat="OVERWEIGHT";
-	else if BMI > 18.5 and BMI < 25 then wt_cat="Normal";
-	else if BMI > 30 then wt_cat="OBESE";
-*/	
+define cat_BMI / 'BMI Category';
 run;
