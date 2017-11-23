@@ -359,7 +359,7 @@ title "Listing of Baseline Patient Characteristics";
 */
 proc report;
 	/* Variables: Pt dosedate age sex race wt_cat BMI cat_BMI result1 result2 abs_change */
-	define wt_cat / computed "BMI Category";
+define wt_cat / computed "BMI Category";
 	compute wt_cat / character length=11;
 	if BMI < 18.5 then wt_cat = "UNDERWEIGHT";
 	else if BMI > 25 and BMI < 30 then wt_cat="OVERWEIGHT";
