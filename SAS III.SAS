@@ -354,16 +354,19 @@ break after wt_cat /skip;
 
 run;
 /* Prewritten Code for Part XIX */
-/*
 title "Listing of Baseline Patient Characteristics";
-*/
 proc report;
-	/* Variables: Pt dosedate age sex race wt_cat BMI cat_BMI result1 result2 abs_change */
-define wt_cat / computed "BMI Category";
-	compute wt_cat / character length=11;
+column pt dosedate age sex race wt_cat BMI cat_BMI analRes1 analRes2 absChange;
+format dosedate mmddyy.;
+define analRes1 / 'Analyte Result 1';
+define analRes2 / 'Analyte Result 2';
+define absChange / 'Absolute Change';
+define age / 'Age';
+define wt_cat / "Weight Category";
+/*
 	if BMI < 18.5 then wt_cat = "UNDERWEIGHT";
 	else if BMI > 25 and BMI < 30 then wt_cat="OVERWEIGHT";
 	else if BMI > 18.5 and BMI < 25 then wt_cat="Normal";
 	else if BMI > 30 then wt_cat="OBESE";
-	endcomp;
+*/	
 run;
