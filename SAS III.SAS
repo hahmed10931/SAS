@@ -356,7 +356,7 @@ run;
 /* Prewritten Code for Part XIX */
 title "Listing of Baseline Patient Characteristics";
 proc report;
-column pt dosedate age sex race wt_cat BMI cat_BMI analRes1 analRes2 absChange;
+column pt_id dosedate age sex race wt_cat BMI cat_BMI analRes1 analRes2 absChange;
 format dosedate mmddyy.;
 define analRes1 / 'Analyte Result 1';
 define analRes2 / 'Analyte Result 2';
